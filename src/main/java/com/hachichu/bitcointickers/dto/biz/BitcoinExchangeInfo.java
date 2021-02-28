@@ -1,6 +1,6 @@
 package com.hachichu.bitcointickers.dto.biz;
 
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -8,9 +8,13 @@ import java.math.BigDecimal;
  * Created by djames
  * 28/02/2021  2:25 AM
  */
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class BitcoinExchangeInfo {
-    private String name = "Bitcoin";
+    private String name;
     private String symbol;
     private BigDecimal ask;
 }

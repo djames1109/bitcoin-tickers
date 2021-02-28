@@ -1,7 +1,6 @@
 package com.hachichu.bitcointickers.service.biz;
 
 import com.hachichu.bitcointickers.dto.biz.BitcoinExchangeInfo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,10 @@ public class BitcoinServiceImpl implements BitcoinService {
         return Arrays.stream(Objects.requireNonNull(response.getBody()))
                 .filter(r -> r.getSymbol().equalsIgnoreCase(USD_SYMBOL))
                 .findFirst()
+                .map(o -> {
+                    o.setName("Bitcoin");
+                    return o;
+                })
                 .orElseThrow(() -> new RuntimeException("Unable to fetch bitcoin exchange info for USD."));
     }
 }

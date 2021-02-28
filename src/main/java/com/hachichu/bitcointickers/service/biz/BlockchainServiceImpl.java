@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+
 /**
  * Created by djames
  * 28/02/2021  11:07 AM
@@ -32,7 +34,7 @@ public class BlockchainServiceImpl implements BlockchainService {
         return BlockchainExchangeInfo.builder()
                 .name("Blockchain")
                 .symbol(USD_SYMBOL)
-                .sell(usdExchangeInfo.getBigDecimal("sell"))
+                .sell(BigDecimal.valueOf(usdExchangeInfo.getDouble("sell")))
                 .build();
     }
 }
