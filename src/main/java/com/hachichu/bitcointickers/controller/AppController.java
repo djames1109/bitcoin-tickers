@@ -1,7 +1,7 @@
 package com.hachichu.bitcointickers.controller;
 
 import com.hachichu.bitcointickers.dto.LowestSellingPrice;
-import com.hachichu.bitcointickers.service.biz.BitcoinService;
+import com.hachichu.bitcointickers.service.AppProcessor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping("/bitcoin/lowest-selling-price")
 @RestController
-public class BitcoinTickerController {
+public class AppController {
 
-    private final BitcoinService bitcoinService;
+    private final AppProcessor processor;
 
-    public BitcoinTickerController(BitcoinService bitcoinService) {
-        this.bitcoinService = bitcoinService;
+    public AppController(AppProcessor processor) {
+        this.processor = processor;
     }
 
     @GetMapping
     public ResponseEntity<LowestSellingPrice> getLowestSellingPrice() {
-        log.info("Response: {}", bitcoinService.getBitcoinExchangeInfo());
+        LowestSellingPrice lowestSellingPrice = processor.getLowestSellingPrice();
+        log.info("Name={}, SellPrice={}", lowestSellingPrice.getName(), lowestSellingPrice.getSellPrice());
 
-        return null;
+        return ResponseEntity.ok(lowestSellingPrice);
     }
 }
