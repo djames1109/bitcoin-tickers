@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- A Java development environment (Recommended IDE: IntelliJ IDEA)
+- JDK
 - git
 - Apache Maven
 
